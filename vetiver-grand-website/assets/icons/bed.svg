@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="bedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#420264;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5a0388;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Bed Frame -->
+  <rect x="15" y="60" width="70" height="8" fill="url(#bedGradient)" rx="2"/>
+  
+  <!-- Headboard -->
+  <rect x="10" y="30" width="8" height="40" fill="url(#bedGradient)" rx="2"/>
+  
+  <!-- Mattress -->
+  <rect x="20" y="50" width="60" height="12" fill="#FFFFFF" stroke="url(#bedGradient)" stroke-width="2" rx="2"/>
+  
+  <!-- Pillow -->
+  <rect x="25" y="45" width="20" height="8" fill="#FFFFFF" stroke="url(#bedGradient)" stroke-width="1" rx="4"/>
+  
+  <!-- Bedspread -->
+  <rect x="25" y="55" width="50" height="5" fill="url(#bedGradient)" opacity="0.7" rx="2"/>
+  
+  <!-- Decorative Elements -->
+  <circle cx="35" cy="49" r="2" fill="url(#bedGradient)"/>
+  <circle cx="45" cy="49" r="2" fill="url(#bedGradient)"/>
+</svg>
+

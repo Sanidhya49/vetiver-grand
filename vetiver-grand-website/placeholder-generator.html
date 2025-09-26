@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placeholder Image Generator - Vetiver Grand</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .placeholder {
+            display: inline-block;
+            margin: 10px;
+            border: 2px solid #420264;
+            border-radius: 8px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #420264, #5a0388);
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            position: relative;
+        }
+        .placeholder img {
+            display: block;
+        }
+        .placeholder-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        h1 {
+            color: #420264;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .instructions {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vetiver Grand - Placeholder Images</h1>
+        
+        <div class="instructions">
+            <h3>Instructions:</h3>
+            <p>Right-click on each placeholder image below and select "Save image as..." to save them to your assets/images folder.</p>
+            <p>These are high-quality placeholder images for the Vetiver Grand website. Replace them with actual hotel photos when available.</p>
+        </div>
+
+        <div class="placeholder" style="width: 1920px; height: 1080px;">
+            <div class="placeholder-text">Luxury Hotel Exterior<br>1920x1080</div>
+        </div>
+
+        <div class="placeholder" style="width: 1920px; height: 1080px; background: linear-gradient(135deg, #5a0388, #7a0ba8);">
+            <div class="placeholder-text">Elegant Interior<br>1920x1080</div>
+        </div>
+
+        <div class="placeholder" style="width: 800px; height: 600px;">
+            <div class="placeholder-text">Wedding Celebration<br>800x600</div>
+        </div>
+
+        <div class="placeholder" style="width: 800px; height: 600px; background: linear-gradient(135deg, #4B0082, #6A0DAD);">
+            <div class="placeholder-text">Spa & Wellness<br>800x600</div>
+        </div>
+
+        <div class="placeholder" style="width: 1920px; height: 1080px;">
+            <div class="placeholder-text">Luxury Rooms<br>1920x1080</div>
+        </div>
+
+        <div class="placeholder" style="width: 800px; height: 600px; background: linear-gradient(135deg, #4B0082, #6A0DAD);">
+            <div class="placeholder-text">Imperial Hall<br>800x600</div>
+        </div>
+
+        <div class="placeholder" style="width: 800px; height: 600px;">
+            <div class="placeholder-text">Royale Lawn<br>800x600</div>
+        </div>
+
+        <div class="placeholder" style="width: 800px; height: 600px; background: linear-gradient(135deg, #4B0082, #6A0DAD);">
+            <div class="placeholder-text">Luxury Suite<br>800x600</div>
+        </div>
+
+        <div class="placeholder" style="width: 800px; height: 600px;">
+            <div class="placeholder-text">Deluxe Room<br>800x600</div>
+        </div>
+
+        <div class="placeholder" style="width: 800px; height: 600px; background: linear-gradient(135deg, #4B0082, #6A0DAD);">
+            <div class="placeholder-text">Infinity Pool<br>800x600</div>
+        </div>
+
+        <div class="placeholder" style="width: 800px; height: 600px;">
+            <div class="placeholder-text">Fitness Center<br>800x600</div>
+        </div>
+
+        <div class="placeholder" style="width: 800px; height: 600px; background: linear-gradient(135deg, #4B0082, #6A0DAD);">
+            <div class="placeholder-text">Fine Dining<br>800x600</div>
+        </div>
+    </div>
+
+    <script>
+        // Add download functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const placeholders = document.querySelectorAll('.placeholder');
+            
+            placeholders.forEach((placeholder, index) => {
+                placeholder.addEventListener('click', function() {
+                    // Create a canvas element
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Set canvas size
+                    canvas.width = this.offsetWidth;
+                    canvas.height = this.offsetHeight;
+                    
+                    // Create gradient
+                    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                    if (this.style.background.includes('#5a0388')) {
+                        gradient.addColorStop(0, '#5a0388');
+                        gradient.addColorStop(1, '#7a0ba8');
+                    } else {
+                        gradient.addColorStop(0, '#420264');
+                        gradient.addColorStop(1, '#5a0388');
+                    }
+                    
+                    // Fill background
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    // Add text
+                    ctx.fillStyle = 'white';
+                    ctx.font = 'bold 24px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(this.querySelector('.placeholder-text').textContent.replace('<br>', '\n'), canvas.width/2, canvas.height/2);
+                    
+                    // Download image
+                    const link = document.createElement('a');
+                    link.download = `placeholder-${index + 1}.png`;
+                    link.href = canvas.toDataURL();
+                    link.click();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
