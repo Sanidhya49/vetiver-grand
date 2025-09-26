@@ -96,25 +96,28 @@ document.addEventListener('DOMContentLoaded', function() {
     // Auto-advance slides every 5 seconds
     setInterval(nextSlide, 5000);
     
-    // ===== SCROLL REVEAL ANIMATIONS =====
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-            }
+    // ===== SCROLL REVEAL ANIMATIONS (Fallback for non-GSAP browsers) =====
+    // Only run if GSAP is not available
+    if (typeof gsap === 'undefined') {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in, .stagger-in');
+        animatedElements.forEach(el => {
+            observer.observe(el);
         });
-    }, observerOptions);
-    
-    // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in, .stagger-in');
-    animatedElements.forEach(el => {
-        observer.observe(el);
-    });
+    }
     
     // ===== CELEBRATIONS TABS =====
     const tabButtons = document.querySelectorAll('.tab-btn');

@@ -13,6 +13,10 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+    
+    <!-- GSAP CDN for Professional Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -20,22 +24,22 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <img src="assets/images/logo-dark.svg" alt="Vetiver Grand" class="logo-img">
+                    <img src="assets/images/logo-dark.svg" alt="Vetiver Grand" class="logo-img logo-animate">
                 </div>
                 
                 <nav class="nav" id="nav">
                     <ul class="nav-list">
-                        <li><a href="#home" class="nav-link">Home</a></li>
-                        <li><a href="#celebrations" class="nav-link">Celebrations</a></li>
-                        <li><a href="#rooms" class="nav-link">Rooms</a></li>
-                        <li><a href="#wellness" class="nav-link">Wellness</a></li>
-                        <li><a href="#gallery" class="nav-link">Gallery</a></li>
-                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                        <li><a href="#home" class="nav-link nav-item">Home</a></li>
+                        <li><a href="#celebrations" class="nav-link nav-item">Celebrations</a></li>
+                        <li><a href="#rooms" class="nav-link nav-item">Rooms</a></li>
+                        <li><a href="#wellness" class="nav-link nav-item">Wellness</a></li>
+                        <li><a href="#gallery" class="nav-link nav-item">Gallery</a></li>
+                        <li><a href="#contact" class="nav-link nav-item">Contact</a></li>
                     </ul>
                 </nav>
                 
                 <div class="header-actions">
-                    <a href="#contact" class="btn btn-primary">Book Now</a>
+                    <a href="#contact" class="btn btn-primary book-btn">Book Now</a>
                     <button class="mobile-menu-toggle" id="mobile-menu-toggle">
                         <span></span>
                         <span></span>
@@ -62,16 +66,27 @@
         <div class="hero-content">
             <div class="container">
                 <div class="hero-text">
-                    <h1 class="hero-title">VETIVER GRAND</h1>
-                    <p class="hero-subtitle">Luxury Redefined: Where Celebrations Become Memories</p>
-                    <a href="#celebrations" class="btn btn-secondary">Explore Our Venues</a>
+                    <h1 class="hero-title hero-title-animate">VETIVER GRAND</h1>
+                    <p class="hero-subtitle hero-subtitle-animate">Luxury Redefined: Where Celebrations Become Memories</p>
+                    <a href="#celebrations" class="btn btn-secondary hero-btn-animate">Explore Our Venues</a>
                 </div>
             </div>
+        </div>
+        
+        <!-- Floating Elements for Extra Motion -->
+        <div class="floating-elements">
+            <div class="floating-circle circle-1"></div>
+            <div class="floating-circle circle-2"></div>
+            <div class="floating-circle circle-3"></div>
         </div>
     </section>
 
     <!-- Pillars of Luxury Section -->
-    <section class="pillars">
+    <section class="pillars textured-background">
+        <div class="floating-elements">
+            <div class="floating-shape" style="top: 10%; left: 5%; width: 150px; height: 150px; animation: float 8s ease-in-out infinite;"></div>
+            <div class="floating-shape" style="top: 70%; right: 5%; width: 200px; height: 200px; animation: float 12s ease-in-out infinite;"></div>
+        </div>
         <div class="container">
             <div class="pillars-grid">
                 <div class="pillar-item stagger-in">
@@ -169,7 +184,7 @@
     </section>
 
     <!-- Wellness & Amenities Section -->
-    <section class="wellness" id="wellness">
+    <section class="wellness textured-background" id="wellness">
         <div class="container">
             <h2 class="section-title fade-in">Wellness & Amenities</h2>
             <div class="wellness-grid">
@@ -222,34 +237,36 @@
     </section>
 
     <!-- Gallery Section -->
-    <section class="gallery" id="gallery">
+    <section class="gallery textured-background" id="gallery">
         <div class="container">
             <h2 class="section-title fade-in">Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item stagger-in" data-src="assets/images/hero-1.jpg">
+        </div>
+        <div class="gallery-horizontal-scroll">
+            <div class="gallery-track">
+                <div class="gallery-item" data-src="assets/images/pexels-pixabay-258154.jpg">
+                    <img src="assets/images/pexels-pixabay-258154.jpg" alt="Poolside View">
+                </div>
+                <div class="gallery-item" data-src="assets/images/pexels-boonkong-boonpeng-442952-1134176.jpg">
+                    <img src="assets/images/pexels-boonkong-boonpeng-442952-1134176.jpg" alt="Luxury Suite">
+                </div>
+                <div class="gallery-item" data-src="assets/images/pexels-fotoaibe-1743231.jpg">
+                    <img src="assets/images/pexels-fotoaibe-1743231.jpg" alt="Restaurant Dining">
+                </div>
+                <div class="gallery-item" data-src="assets/images/pexels-jay-344463-949406.jpg">
+                    <img src="assets/images/pexels-jay-344463-949406.jpg" alt="Hotel Exterior">
+                </div>
+                <div class="gallery-item" data-src="assets/images/pexels-pixabay-260922.jpg">
+                    <img src="assets/images/pexels-pixabay-260922.jpg" alt="Lobby Area">
+                </div>
+                <div class="gallery-item" data-src="assets/images/hero-1.jpg">
                     <img src="assets/images/hero-1.jpg" alt="Hotel Interior">
-                </div>
-                <div class="gallery-item stagger-in" data-src="assets/images/celebration.jpg">
-                    <img src="assets/images/celebration.jpg" alt="Celebration">
-                </div>
-                <div class="gallery-item stagger-in" data-src="assets/images/rooms.jpg">
-                    <img src="assets/images/rooms.jpg" alt="Luxury Room">
-                </div>
-                <div class="gallery-item stagger-in" data-src="assets/images/imperial-hall.jpg">
-                    <img src="assets/images/imperial-hall.jpg" alt="Imperial Hall">
-                </div>
-                <div class="gallery-item stagger-in" data-src="assets/images/royale-lawn.jpg">
-                    <img src="assets/images/royale-lawn.jpg" alt="Royale Lawn">
-                </div>
-                <div class="gallery-item stagger-in" data-src="assets/images/suite.jpg">
-                    <img src="assets/images/suite.jpg" alt="Luxury Suite">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact & Location Section -->
-    <section class="contact" id="contact">
+    <section class="contact textured-background" id="contact">
         <div class="container">
             <div class="contact-content">
                 <div class="contact-map slide-in-left">
@@ -331,6 +348,7 @@
 
     <!-- JavaScript -->
     <script src="js/script.js"></script>
+    <script src="js/gsap-animations.js"></script>
 </body>
 </html>
 

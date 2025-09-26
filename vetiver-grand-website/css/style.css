@@ -15,22 +15,40 @@ body {
     font-size: 1rem;
     line-height: 1.6;
     color: #1a1a1a;
-    background: linear-gradient(135deg, #f8f6ff 0%, #ffffff 50%, #f0ecff 100%);
+    background-color: #f8f6ff;
     overflow-x: hidden;
+}
+
+.textured-background {
+    position: relative;
+    background-color: #f8f6ff;
+}
+
+.textured-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/images/subtle-texture.svg');
+    opacity: 0.5;
+    z-index: -1;
 }
 
 /* ===== CUSTOM SCROLLBAR ===== */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #F5F5F5;
+    background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
     background: linear-gradient(135deg, #420264, #5a0388);
-    border-radius: 4px;
+    border-radius: 3px;
+    height: 30%; /* This will not work as expected, scrollbar thumb height is dynamic */
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -329,10 +347,24 @@ p {
     }
 }
 
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(45deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
 /* ===== PILLARS SECTION ===== */
 .pillars {
     padding: 5rem 0;
     background: linear-gradient(135deg, #f8f6ff 0%, #f0ecff 50%, #e8e0ff 100%);
+    position: relative;
+    overflow: hidden;
 }
 
 .pillars-grid {
@@ -395,6 +427,7 @@ p {
     padding: 5rem 0;
     background-color: #FFFFFF;
     margin-top: 2rem;
+    position: relative;
 }
 
 .celebrations-content {
@@ -530,6 +563,7 @@ p {
 .wellness {
     padding: 5rem 0;
     background: linear-gradient(135deg, #f0ecff 0%, #e8e0ff 50%, #f8f6ff 100%);
+    position: relative;
 }
 
 .wellness-grid {
@@ -608,35 +642,45 @@ p {
 .gallery {
     padding: 5rem 0;
     background: linear-gradient(135deg, #f8f6ff 0%, #f0ecff 50%, #e8e0ff 100%);
+    position: relative;
+    overflow: hidden;
 }
 
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+.gallery .container {
+    margin-bottom: 3rem;
+}
+
+.gallery-horizontal-scroll {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.gallery-track {
+    display: flex;
+    width: max-content;
+    gap: 2rem;
+    padding: 0 5vw;
+    height: 100%;
+    align-items: center;
+    will-change: transform;
 }
 
 .gallery-item {
     position: relative;
-    border-radius: 10px;
+    border-radius: 15px;
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.gallery-item:hover {
-    transform: scale(1.05);
+    height: 80vh;
+    width: auto;
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .gallery-item img {
     width: 100%;
-    height: 250px;
+    height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.1);
 }
 
 /* ===== LIGHTBOX ===== */
@@ -690,6 +734,7 @@ p {
 .contact {
     padding: 5rem 0;
     background-color: #FFFFFF;
+    position: relative;
 }
 
 .contact-content {
@@ -911,7 +956,75 @@ p {
     }
 }
 
-/* ===== SCROLL ANIMATIONS ===== */
+/* ===== FLOATING ELEMENTS ===== */
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(66, 2, 100, 0.1), rgba(90, 3, 136, 0.2));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(66, 2, 100, 0.2);
+}
+
+.floating-shape {
+    position: absolute;
+    border-radius: 30%;
+    background: linear-gradient(135deg, rgba(66, 2, 100, 0.05), rgba(90, 3, 136, 0.1));
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(66, 2, 100, 0.1);
+    opacity: 0.5;
+}
+
+.circle-1 {
+    width: 80px;
+    height: 80px;
+    top: 20%;
+    left: 10%;
+}
+
+.circle-2 {
+    width: 120px;
+    height: 120px;
+    top: 60%;
+    right: 15%;
+}
+
+.circle-3 {
+    width: 60px;
+    height: 60px;
+    top: 40%;
+    left: 80%;
+}
+
+/* ===== GSAP ANIMATION CLASSES ===== */
+.word {
+    display: inline-block;
+    transform-origin: center;
+}
+
+/* Enhanced hover effects for GSAP */
+.pillar-item {
+    transition: none; /* Let GSAP handle animations */
+}
+
+.btn {
+    transition: none; /* Let GSAP handle animations */
+}
+
+.gallery-item {
+    transition: none; /* Let GSAP handle animations */
+}
+
+/* ===== SCROLL ANIMATIONS (Fallback) ===== */
 .fade-in {
     opacity: 0;
     transform: translateY(50px);
