@@ -11,7 +11,6 @@ window.addEventListener('load', () => {
     gsap.set('.logo-animate', { y: -50, opacity: 0 });
     gsap.set('.nav-item', { y: -30, opacity: 0 });
     gsap.set('.book-btn', { scale: 0, opacity: 0 });
-    gsap.set('.floating-circle', { scale: 0, opacity: 0 });
     
     // Hero entrance animation timeline
     const heroTl = gsap.timeline({ delay: 0.5 });
@@ -54,45 +53,7 @@ window.addEventListener('load', () => {
             opacity: 1, 
             scale: 1, 
             ease: "back.out(1.7)" 
-        }, "-=0.5")
-        .to('.floating-circle', { 
-            duration: 1, 
-            scale: 1, 
-            opacity: 0.6, 
-            stagger: 0.2, 
-            ease: "power2.out" 
-        }, "-=0.3");
-});
-
-// ===== FLOATING ELEMENTS ANIMATION =====
-gsap.to('.circle-1', {
-    duration: 4,
-    x: 100,
-    y: -50,
-    rotation: 360,
-    ease: "none",
-    repeat: -1,
-    yoyo: true
-});
-
-gsap.to('.circle-2', {
-    duration: 6,
-    x: -80,
-    y: 60,
-    rotation: -360,
-    ease: "none",
-    repeat: -1,
-    yoyo: true
-});
-
-gsap.to('.circle-3', {
-    duration: 5,
-    x: 60,
-    y: -80,
-    rotation: 180,
-    ease: "none",
-    repeat: -1,
-    yoyo: true
+        }, "-=0.5");
 });
 
 // ===== SCROLL-TRIGGERED ANIMATIONS =====
