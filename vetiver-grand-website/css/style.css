@@ -272,7 +272,7 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(66, 2, 100, 0.5);
     z-index: 1;
 }
 
@@ -379,9 +379,7 @@ p {
     background-color: #FFFFFF;
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    opacity: 0;
-    transform: translateY(50px);
+    will-change: transform, opacity;
 }
 
 .pillar-item.is-visible {
@@ -439,6 +437,7 @@ p {
 .celebrations-header {
     text-align: center;
     margin-bottom: 2rem;
+    will-change: transform, opacity;
 }
 
 .section-title {
@@ -461,6 +460,7 @@ p {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     max-width: 800px;
     margin: 0 auto;
+    will-change: transform, opacity;
 }
 
 .tab-buttons {
@@ -506,6 +506,7 @@ p {
     border-left: 4px solid #420264;
     box-shadow: 0 2px 10px rgba(66, 2, 100, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform, opacity;
 }
 
 .venue-item:hover {
@@ -552,6 +553,7 @@ p {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem 0;
+    will-change: transform, opacity;
 }
 
 .rooms .section-title,
@@ -578,6 +580,7 @@ p {
     overflow: hidden;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    will-change: transform, opacity;
 }
 
 .wellness-item:hover {
@@ -630,6 +633,7 @@ p {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    will-change: transform, opacity;
 }
 
 .restaurant-image img {
@@ -638,16 +642,15 @@ p {
     object-fit: cover;
 }
 
-/* ===== GALLERY SECTION ===== */
-.gallery {
-    padding: 5rem 0;
-    background: linear-gradient(135deg, #f8f6ff 0%, #f0ecff 50%, #e8e0ff 100%);
-    position: relative;
-    overflow: hidden;
+.restaurant-text {
+    will-change: transform, opacity;
 }
 
-.gallery .container {
-    margin-bottom: 3rem;
+/* ===== GALLERY SECTION ===== */
+.gallery {
+    padding: 0;
+    background-color: #f8f6ff;
+    overflow: hidden;
 }
 
 .gallery-horizontal-scroll {
@@ -659,25 +662,54 @@ p {
 .gallery-track {
     display: flex;
     width: max-content;
-    gap: 2rem;
-    padding: 0 5vw;
     height: 100%;
     align-items: center;
     will-change: transform;
 }
 
-.gallery-item {
-    position: relative;
-    border-radius: 15px;
-    overflow: hidden;
-    cursor: pointer;
-    height: 80vh;
-    width: auto;
-    aspect-ratio: 4 / 3;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+.gallery-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100%;
+    padding: 0 5vw;
+    gap: 5vw;
 }
 
-.gallery-item img {
+.gallery-text {
+    flex: 1;
+    max-width: 400px;
+}
+
+.gallery-text h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.gallery-text p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.gallery-category {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #420264;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.gallery-image {
+    flex: 1.5;
+    height: 70%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -747,6 +779,7 @@ p {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    will-change: transform, opacity;
 }
 
 .contact-map iframe {
@@ -759,6 +792,7 @@ p {
     background-color: #F5F5F5;
     padding: 2rem;
     border-radius: 10px;
+    will-change: transform, opacity;
 }
 
 .contact-form-container h3 {

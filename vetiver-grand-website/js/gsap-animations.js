@@ -110,11 +110,10 @@ gsap.fromTo('.pillar-item',
         opacity: 1,
         scale: 1,
         stagger: 0.15,
-        ease: "power3.out",
+        ease: "power2.out",
         scrollTrigger: {
             trigger: '.pillars',
-            start: "top 90%",
-            end: "bottom 20%",
+            start: "top 80%",
             toggleActions: "play none none reverse"
         }
     }
@@ -130,10 +129,10 @@ gsap.fromTo('.celebrations-header',
         duration: 0.8,
         y: 0,
         opacity: 1,
-        ease: "power3.out",
+        ease: "power2.out",
         scrollTrigger: {
             trigger: '.celebrations-header',
-            start: "top 90%",
+            start: "top 85%",
             toggleActions: "play none none reverse"
         }
     }
@@ -150,10 +149,10 @@ gsap.fromTo('.celebrations-tabs',
         scale: 1,
         opacity: 1,
         rotationY: 0,
-        ease: "power3.out",
+        ease: "power2.out",
         scrollTrigger: {
             trigger: '.celebrations-tabs',
-            start: "top 90%",
+            start: "top 80%",
             toggleActions: "play none none reverse"
         }
     }
@@ -173,7 +172,7 @@ gsap.fromTo('.venue-item',
         ease: "power2.out",
         scrollTrigger: {
             trigger: '.venue-list',
-            start: "top 90%",
+            start: "top 85%",
             toggleActions: "play none none reverse"
         }
     }
@@ -200,10 +199,10 @@ gsap.fromTo('.rooms-content',
         duration: 1,
         y: 0,
         opacity: 1,
-        ease: "power3.out",
+        ease: "power2.out",
         scrollTrigger: {
             trigger: '.rooms-content',
-            start: "top 90%",
+            start: "top 80%",
             toggleActions: "play none none reverse"
         }
     }
@@ -219,10 +218,10 @@ gsap.fromTo('.wellness .section-title',
         duration: 0.8,
         y: 0,
         opacity: 1,
-        ease: "power3.out",
+        ease: "power2.out",
         scrollTrigger: {
             trigger: '.wellness .section-title',
-            start: "top 90%",
+            start: "top 85%",
             toggleActions: "play none none reverse"
         }
     }
@@ -240,10 +239,10 @@ gsap.fromTo('.wellness-item',
         opacity: 1,
         scale: 1,
         stagger: 0.15,
-        ease: "power3.out",
+        ease: "power2.out",
         scrollTrigger: {
             trigger: '.wellness-grid',
-            start: "top 90%",
+            start: "top 80%",
             toggleActions: "play none none reverse"
         }
     }
@@ -261,10 +260,10 @@ gsap.fromTo('.restaurant-image',
         x: 0,
         opacity: 1,
         rotationY: 0,
-        ease: "power3.out",
+        ease: "power2.out",
         scrollTrigger: {
             trigger: '.restaurant-image',
-            start: "top 90%",
+            start: "top 80%",
             toggleActions: "play none none reverse"
         }
     }
@@ -281,36 +280,18 @@ gsap.fromTo('.restaurant-text',
         x: 0,
         opacity: 1,
         rotationY: 0,
-        ease: "power3.out",
+        ease: "power2.out",
         scrollTrigger: {
             trigger: '.restaurant-text',
-            start: "top 90%",
+            start: "top 80%",
             toggleActions: "play none none reverse"
         }
     }
 );
 
 // Gallery Section
-gsap.fromTo('.gallery .section-title', 
-    { 
-        y: 60, 
-        opacity: 0 
-    },
-    {
-        duration: 0.8,
-        y: 0,
-        opacity: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-            trigger: '.gallery .section-title',
-            start: "top 90%",
-            toggleActions: "play none none reverse"
-        }
-    }
-);
-
 const galleryTrack = document.querySelector('.gallery-track');
-const galleryItems = document.querySelectorAll('.gallery-item');
+const gallerySlides = document.querySelectorAll('.gallery-slide');
 const galleryHorizontalScroll = document.querySelector('.gallery-horizontal-scroll');
 const header = document.querySelector('.header');
 
@@ -320,9 +301,9 @@ function getScrollAmount() {
     return -(galleryTrackWidth - window.innerWidth);
 }
 
-gsap.to(galleryTrack, {
+// Create the main horizontal scroll tween and store it in a variable
+const horizontalScrollTween = gsap.to(galleryTrack, {
     x: getScrollAmount,
-    duration: 3,
     ease: "none",
     scrollTrigger: {
         trigger: ".gallery-horizontal-scroll",
@@ -347,25 +328,23 @@ gsap.to(galleryTrack, {
     }
 });
 
-// Staggered fade-in animation for gallery items
-gsap.fromTo(galleryItems, 
-    { 
-        opacity: 0, 
-        scale: 0.8 
-    },
-    {
-        opacity: 1,
-        scale: 1,
-        duration: 0.5,
+// Animate text for each slide
+gallerySlides.forEach((slide, index) => {
+    const textElements = slide.querySelectorAll('.gallery-text > *');
+    gsap.from(textElements, {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
         stagger: 0.1,
-        ease: "power2.out",
+        ease: 'power2.out',
         scrollTrigger: {
-            trigger: ".gallery-horizontal-scroll",
-            start: "top center",
-            toggleActions: "play none none reverse"
+            trigger: slide,
+            containerAnimation: horizontalScrollTween, // Reference the main tween
+            start: 'left center',
+            toggleActions: 'play none none reverse'
         }
-    }
-);
+    });
+});
 
 // Contact Section
 gsap.fromTo('.contact-map', 
@@ -377,10 +356,10 @@ gsap.fromTo('.contact-map',
         duration: 1,
         x: 0,
         opacity: 1,
-        ease: "power3.out",
+        ease: "power2.out",
         scrollTrigger: {
             trigger: '.contact-map',
-            start: "top 90%",
+            start: "top 80%",
             toggleActions: "play none none reverse"
         }
     }
@@ -395,10 +374,10 @@ gsap.fromTo('.contact-form-container',
         duration: 1,
         x: 0,
         opacity: 1,
-        ease: "power3.out",
+        ease: "power2.out",
         scrollTrigger: {
             trigger: '.contact-form-container',
-            start: "top 90%",
+            start: "top 80%",
             toggleActions: "play none none reverse"
         }
     }
