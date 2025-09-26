@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     
     // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.pillar-item, .section-title, .section-description, .wellness-item, .gallery-item');
+    const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in, .stagger-in');
     animatedElements.forEach(el => {
         observer.observe(el);
     });
