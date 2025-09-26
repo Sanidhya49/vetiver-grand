@@ -264,6 +264,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // ===== CUSTOM SCROLLBAR =====
+    const scrollbarThumb = document.querySelector('.custom-scrollbar-thumb');
+    let customScrollTimeout;
+
+    function updateScrollbar() {
+        const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        const thumbHeight = Math.max(20, (window.innerHeight / document.documentElement.scrollHeight) * window.innerHeight); // Min height of 20px
+        
+        scrollbarThumb.style.height = `${thumbHeight}px`;
+        scrollbarThumb.style.top = `${(window.innerHeight - thumbHeight) * (scrollPercentage / 100)}px`;
+    }
+
     // ===== ACTIVE NAVIGATION LINK HIGHLIGHTING =====
     const sections = document.querySelectorAll('section[id]');
     
@@ -288,8 +300,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    window.addEventListener('scroll', highlightNavigation);
-    
     // ===== LAZY LOADING FOR IMAGES =====
     const images = document.querySelectorAll('img[data-src]');
     
@@ -306,20 +316,28 @@ document.addEventListener('DOMContentLoaded', function() {
     
     images.forEach(img => imageObserver.observe(img));
     
-    // ===== PERFORMANCE OPTIMIZATION =====
-    // Throttle scroll events
+    // ===== PERFORMANCE OPTIMIZATION & SCROLLBAR LOGIC =====
     let scrollTimeout;
     function throttledScroll() {
         if (!scrollTimeout) {
             scrollTimeout = setTimeout(function() {
                 handleScroll();
                 highlightNavigation();
+                updateScrollbar();
+                
+                document.body.classList.add('scrolling');
+                clearTimeout(customScrollTimeout);
+                customScrollTimeout = setTimeout(() => {
+                    document.body.classList.remove('scrolling');
+                }, 1000);
+
                 scrollTimeout = null;
             }, 10);
         }
     }
     
     window.addEventListener('scroll', throttledScroll);
+    window.addEventListener('resize', updateScrollbar);
     
     // ===== ACCESSIBILITY IMPROVEMENTS =====
     // Add keyboard navigation for mobile menu
@@ -341,6 +359,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set initial states
     handleScroll();
     highlightNavigation();
+    updateScrollbar();
     
     // Add loading animation completion
     window.addEventListener('load', function() {

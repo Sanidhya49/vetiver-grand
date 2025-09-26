@@ -8,6 +8,12 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For IE and Edge */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
 }
 
 body {
@@ -37,22 +43,38 @@ body {
 }
 
 /* ===== CUSTOM SCROLLBAR ===== */
-::-webkit-scrollbar {
-    width: 6px;
+/* Hide default scrollbar across all browsers */
+html {
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For IE and Edge */
+}
+html::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
 }
 
-::-webkit-scrollbar-track {
-    background: transparent;
+.custom-scrollbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 100%;
+    z-index: 2000;
+    pointer-events: none;
 }
 
-::-webkit-scrollbar-thumb {
+.custom-scrollbar-thumb {
+    position: absolute;
+    top: 0;
+    right: 2px;
+    width: 4px;
     background: linear-gradient(135deg, #420264, #5a0388);
-    border-radius: 3px;
-    height: 30%; /* This will not work as expected, scrollbar thumb height is dynamic */
+    border-radius: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #5a0388, #420264);
+body.scrolling .custom-scrollbar-thumb {
+    opacity: 1;
 }
 
 /* ===== TYPOGRAPHY ===== */
@@ -429,15 +451,14 @@ p {
 }
 
 .celebrations-content {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
 }
 
-.celebrations-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    will-change: transform, opacity;
+.celebrations-text {
+    text-align: left;
 }
 
 .section-title {
@@ -459,7 +480,7 @@ p {
     padding: 2.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0;
     will-change: transform, opacity;
 }
 
