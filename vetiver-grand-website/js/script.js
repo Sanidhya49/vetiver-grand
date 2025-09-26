@@ -96,6 +96,28 @@ document.addEventListener('DOMContentLoaded', function() {
     // Auto-advance slides every 5 seconds
     setInterval(nextSlide, 5000);
     
+    // ===== HERO IMAGE CURSOR EFFECT =====
+    const hero = document.querySelector('.hero');
+    hero.addEventListener('mousemove', (e) => {
+        const { clientX: x, clientY: y } = e;
+        const { offsetWidth: width, offsetHeight: height } = hero;
+        
+        const moveX = (x / width - 0.5) * 30; // 30 is the intensity
+        const moveY = (y / height - 0.5) * 30;
+        
+        const activeBg = document.querySelector('.hero-slide.active .hero-bg');
+        if (activeBg) {
+            activeBg.style.transform = `scale(1.1) translate(${moveX}px, ${moveY}px)`;
+        }
+    });
+
+    hero.addEventListener('mouseleave', () => {
+        const activeBg = document.querySelector('.hero-slide.active .hero-bg');
+        if (activeBg) {
+            activeBg.style.transform = 'scale(1.1) translate(0, 0)';
+        }
+    });
+
     // ===== SCROLL REVEAL ANIMATIONS (Fallback for non-GSAP browsers) =====
     // Only run if GSAP is not available
     if (typeof gsap === 'undefined') {

@@ -80,20 +80,31 @@ gsap.fromTo('.pillar-item',
     }
 );
 
+// Floating shapes animation in Pillars section
+gsap.to('.floating-shape', {
+    duration: 8,
+    x: (index) => (index % 2 === 0 ? 50 : -50),
+    y: (index) => (index % 2 === 0 ? -50 : 50),
+    rotation: 45,
+    ease: "sine.inOut",
+    repeat: -1,
+    yoyo: true
+});
+
 // Celebrations Section
-gsap.fromTo('.celebrations-header', 
+gsap.fromTo('.celebrations-text', 
     { 
-        y: 80, 
+        x: -80, 
         opacity: 0 
     },
     {
-        duration: 0.8,
-        y: 0,
+        duration: 1,
+        x: 0,
         opacity: 1,
         ease: "power2.out",
         scrollTrigger: {
-            trigger: '.celebrations-header',
-            start: "top 85%",
+            trigger: '.celebrations-text',
+            start: "top 80%",
             toggleActions: "play none none reverse"
         }
     }
